@@ -10,9 +10,16 @@ namespace UnderstandingRoutingInAspNetMvc
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Product",
+                url: "Product/{productId}",
+                defaults: new { controller = "Product", action = "Details" },
+                constraints: new { productId = @"\d+" }
+            );
+
+            routes.MapRoute(
                 name: "Blog",                               // Route name
                 url: "Archive/{entryDate}",                 // URL with parameters
-                defaults: new {controller= "Archive", action="Entry"}  // Parameter defaults
+                defaults: new { controller = "Archive", action = "Entry" }  // Parameter defaults
             );
 
             routes.MapRoute(
@@ -20,6 +27,7 @@ namespace UnderstandingRoutingInAspNetMvc
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
         }
     }
 }
